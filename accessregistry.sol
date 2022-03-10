@@ -17,6 +17,7 @@ contract Accessregistry{
     mapping(address =>bool) public isOwner; 
     uint256 public MINIMUM_CONFIRMATIONS;
 
+
     modifier onlyAdmin(){
         require(msg.sender ==admin, "Only admin can call");
         _;
@@ -24,6 +25,10 @@ contract Accessregistry{
 
     constructor(){
         admin =msg.sender;
+    }
+
+    function changeAdmin(address _admin) onlyAdmin{
+        admin  =_admin;
     }
 
     function getOwnerCount() public view returns(uint){
